@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "search_products input v1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "query": {
+      "type": "string",
+      "maxLength": 1000,
+      "default": ""
+    },
+    "filters": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "category": {
+          "type": "string",
+          "minLength": 1
+        },
+        "product_type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "color": {
+          "type": "string",
+          "minLength": 1
+        },
+        "audience": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pattern": {
+          "type": "string",
+          "minLength": 1
+        },
+        "min_price": {
+          "type": "number",
+          "minimum": 0
+        },
+        "max_price": {
+          "type": "number",
+          "minimum": 0
+        },
+        "min_rating": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "min_review_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "default": {}
+    },
+    "sort_by": {
+      "type": "string",
+      "enum": [
+        "relevance",
+        "id",
+        "price",
+        "rating",
+        "review_count"
+      ],
+      "default": "relevance"
+    },
+    "sort_order": {
+      "type": "string",
+      "enum": [
+        "asc",
+        "desc"
+      ],
+      "default": "desc"
+    },
+    "offset": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 10000,
+      "default": 0
+    },
+    "limit": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100,
+      "default": 10
+    },
+    "include_recommendations": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}
